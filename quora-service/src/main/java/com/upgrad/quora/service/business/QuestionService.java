@@ -64,7 +64,7 @@ public class QuestionService {
         }
 
         if (userAuth.getLogoutAt() != null && userAuth.getLogoutAt().isAfter(userAuth.getLoginAt())) {
-            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to edit the question");
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to post a question");
         }
 
         QuestionEntity currentQuestionEntity = questionDao.getQuestionByUuid(questUuid);
