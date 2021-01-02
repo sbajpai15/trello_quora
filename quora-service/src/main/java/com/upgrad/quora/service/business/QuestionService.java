@@ -106,7 +106,6 @@ public class QuestionService {
 
     }
 
-    /*
     @Transactional(propagation = Propagation.REQUIRED)
     public List<QuestionEntity> getAllQuestionByUser(String uuid, String token) throws AuthorizationFailedException, UserNotFoundException {
 
@@ -128,5 +127,4 @@ public class QuestionService {
 
     }
 
-     */
 }

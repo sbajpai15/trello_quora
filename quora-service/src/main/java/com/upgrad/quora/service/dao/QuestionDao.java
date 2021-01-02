@@ -42,7 +42,6 @@ public class QuestionDao {
         return questionEntity;
     }
 
-    /*
     public List<QuestionEntity> getAllQuestionsByUser(UserEntity user){
         try {
             return entityManager.createNamedQuery("questionListByUuid", QuestionEntity.class).setParameter("user",user).getResultList();
@@ -51,5 +50,4 @@ public class QuestionDao {
         }
     }
 
-    */
 }
