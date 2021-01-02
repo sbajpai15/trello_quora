@@ -80,7 +80,6 @@ public class QuestionService {
         return questionDao.editQuestionContent(currentQuestionEntity);
     }
 
-    /*
     @Transactional(propagation = Propagation.REQUIRED)
     public QuestionEntity deleteQuestion(String questUuid, String token) throws AuthorizationFailedException, InvalidQuestionException {
 
@@ -107,6 +106,7 @@ public class QuestionService {
 
     }
 
+    /*
     @Transactional(propagation = Propagation.REQUIRED)
     public List<QuestionEntity> getAllQuestionByUser(String uuid, String token) throws AuthorizationFailedException, UserNotFoundException {
 

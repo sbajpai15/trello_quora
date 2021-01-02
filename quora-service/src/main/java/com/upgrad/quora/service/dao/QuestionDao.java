@@ -37,12 +37,12 @@ public class QuestionDao {
         return entityManager.merge(questionEntity);
     }
 
-    /*
     public QuestionEntity deleteQuestion(QuestionEntity questionEntity) {
         entityManager.remove(questionEntity);
         return questionEntity;
     }
 
+    /*
     public List<QuestionEntity> getAllQuestionsByUser(UserEntity user){
         try {
             return entityManager.createNamedQuery("questionListByUuid", QuestionEntity.class).setParameter("user",user).getResultList();
