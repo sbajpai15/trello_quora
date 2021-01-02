@@ -70,8 +70,20 @@ public class UserDao {
             return null;
         }
     }
+    //this method is used by Admin service to delete user
+    public UserEntity deleteUser(final String uuid) {
+        UserEntity deleteUser = getUserByUserid(uuid);
+        if (deleteUser != null) {
+            this.entityManager.remove(deleteUser);
+        }
+        return deleteUser;
+    }
 
 
 
 
 }
+
+
+
+
