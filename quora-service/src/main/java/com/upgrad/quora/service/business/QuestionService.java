@@ -42,7 +42,6 @@ public class QuestionService {
         return questionEntity;
     }
 
-    /*
     public List<QuestionEntity> getAllQuestion(String authorization) throws AuthorizationFailedException {
         UserAuthTokenEntity userAuthTokenEntity = userDao.getUserAuthToken(authorization);
 
@@ -57,6 +56,7 @@ public class QuestionService {
         return questionDao.getAllQuestions();
     }
 
+    /*
     @Transactional(propagation = Propagation.REQUIRED)
     public QuestionEntity editQuestionContent(String questUuid,final QuestionEntity questionEntity, final String authorizationToken) throws AuthorizationFailedException, InvalidQuestionException {
         UserAuthTokenEntity userAuth = userDao.getUserAuthToken(authorizationToken);

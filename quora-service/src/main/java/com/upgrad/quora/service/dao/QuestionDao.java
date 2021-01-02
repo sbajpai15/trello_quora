@@ -20,11 +20,11 @@ public class QuestionDao {
         return questionEntity;
     }
 
-    /*
     public List<QuestionEntity> getAllQuestions(){
         return entityManager.createNamedQuery("getAllQuestions", QuestionEntity.class).getResultList();
     }
 
+    /*
     public QuestionEntity getQuestionByUuid(final String uuid) {
         try {
             return entityManager.createNamedQuery("questionEntityByUuid", QuestionEntity.class).setParameter("uuid",uuid).getSingleResult();
