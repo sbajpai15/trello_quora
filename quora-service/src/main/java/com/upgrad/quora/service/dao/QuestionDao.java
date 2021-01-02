@@ -24,7 +24,7 @@ public class QuestionDao {
         return entityManager.createNamedQuery("getAllQuestions", QuestionEntity.class).getResultList();
     }
 
-    /*
+
     public QuestionEntity getQuestionByUuid(final String uuid) {
         try {
             return entityManager.createNamedQuery("questionEntityByUuid", QuestionEntity.class).setParameter("uuid",uuid).getSingleResult();
@@ -37,6 +37,7 @@ public class QuestionDao {
         return entityManager.merge(questionEntity);
     }
 
+    /*
     public QuestionEntity deleteQuestion(QuestionEntity questionEntity) {
         entityManager.remove(questionEntity);
         return questionEntity;

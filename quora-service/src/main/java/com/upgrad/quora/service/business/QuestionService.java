@@ -56,7 +56,6 @@ public class QuestionService {
         return questionDao.getAllQuestions();
     }
 
-    /*
     @Transactional(propagation = Propagation.REQUIRED)
     public QuestionEntity editQuestionContent(String questUuid,final QuestionEntity questionEntity, final String authorizationToken) throws AuthorizationFailedException, InvalidQuestionException {
         UserAuthTokenEntity userAuth = userDao.getUserAuthToken(authorizationToken);
@@ -81,6 +80,7 @@ public class QuestionService {
         return questionDao.editQuestionContent(currentQuestionEntity);
     }
 
+    /*
     @Transactional(propagation = Propagation.REQUIRED)
     public QuestionEntity deleteQuestion(String questUuid, String token) throws AuthorizationFailedException, InvalidQuestionException {
 
