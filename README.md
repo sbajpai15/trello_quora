@@ -7,7 +7,7 @@ This project was implemeneted as part of UpGrad Full Stack Development group ass
 3. *Shrish Bajpai*
 4. *Rupesh Narayana*
 
-<h2> Git/GitHub best practice </h2>
+<h2> Git/GitHub best practice incorporated </h2>
 Each contirbuting member of the project forked the master and created a dev branch for this forked repo. Each member fetched from the upstream repository into their local repo so they are akways working on latest commits and updates of the various branches
 After making any local commits, the respective member will pushed their committs to their remote dev repo and raised pull requests to the master. As a rule of thumb the same member cannot raise pull requests and merge merged/approved to the master
 
