@@ -64,7 +64,7 @@ public class QuestionService {
         }
 
         if (userAuth.getLogoutAt() != null && userAuth.getLogoutAt().isAfter(userAuth.getLoginAt())) {
-            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to edit the question");
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to edit a question");
         }
 
         QuestionEntity currentQuestionEntity = questionDao.getQuestionByUuid(questUuid);
@@ -98,7 +98,7 @@ public class QuestionService {
             throw new InvalidQuestionException("QUES-001", "Entered question uuid does not exist");
         }
 
-        if (!questionEntity.getUser().getUuid().equals(userAuth.getUser().getUuid())) {
+        if (!questionEntity.getUser().getUuid().equals(userAuth.getUser().getUuid()) && !userAuth.getUser().getRole().equals("admin")) {
             throw new AuthorizationFailedException("ATHR-003", "Only the question owner or admin can delete the question");
         }
 
