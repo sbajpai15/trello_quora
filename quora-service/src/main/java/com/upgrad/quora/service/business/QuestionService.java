@@ -64,7 +64,7 @@ public class QuestionService {
         }
 
         if (userAuth.getLogoutAt() != null && userAuth.getLogoutAt().isAfter(userAuth.getLoginAt())) {
-            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to post a question");
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to edit a question");
         }
 
         QuestionEntity currentQuestionEntity = questionDao.getQuestionByUuid(questUuid);
@@ -89,7 +89,7 @@ public class QuestionService {
         }
 
         if (userAuth.getLogoutAt() != null) {
-            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to edit the question");
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to delete the question");
         }
 
         QuestionEntity questionEntity = questionDao.getQuestionByUuid(questUuid);
