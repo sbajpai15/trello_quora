@@ -3,7 +3,6 @@ package com.upgrad.quora.service.business;
 import com.upgrad.quora.service.dao.UserAuthDao;
 import com.upgrad.quora.service.dao.UserDao;
 import com.upgrad.quora.service.entity.UserAuthTokenEntity;
-import com.upgrad.quora.service.entity.UserAuthTokenEntity;
 import com.upgrad.quora.service.entity.UserEntity;
 import com.upgrad.quora.service.exception.AuthorizationFailedException;
 import com.upgrad.quora.service.exception.UserNotFoundException;
@@ -19,17 +18,6 @@ public class AdminService {
 
     @Autowired private UserDao userDao;
 
-    /**
-     * Deletes the user form the database.
-     *
-     * @param uuid ID of the user to be deleted.
-     * @param accessToken To authenticate if the user who is tying to delete the user.
-     * @return
-     * @throws AuthorizationFailedException ATHR-001 if the access token is invalid or ATHR-002
-     *     already logged out or ATHR-003 user is not an admin or user with enetered uuid does not
-     *     exist
-     * @throws UserNotFoundException USR-001 if the user with given id is not present in the records.
-     */
     @Transactional(propagation = Propagation.REQUIRED)
     public UserEntity deleteUser(final String uuid, final String accessToken)
             throws AuthorizationFailedException, UserNotFoundException {
@@ -48,14 +36,14 @@ public class AdminService {
                     "ATHR-003", "Unauthorized Access, Entered user is not an admin");
         }
 
-        UserEntity existingUser = this.userDao.getUserByUserid("uuid");
+        UserEntity existingUser = this.userDao.getUserByUserid(uuid);
 
         if (existingUser == null) {
             throw new UserNotFoundException(
                     "USR-001", "User with entered uuid to be deleted does not exist");
         }
 
-        UserEntity deletedUser = this.userDao.deleteUser("uuid");
+        UserEntity deletedUser = this.userDao.deleteUser(uuid);
         return deletedUser;
     }
 }
