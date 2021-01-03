@@ -190,6 +190,8 @@ public class UserEntity implements Serializable {
 
 
 
+
+
     @Override
     public boolean equals(Object obj) {
         return new EqualsBuilder().append(this, obj).isEquals();
