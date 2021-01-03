@@ -89,7 +89,7 @@ public class QuestionService {
         }
 
         if (userAuth.getLogoutAt() != null) {
-            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to delete the question");
+            throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to edit the question");
         }
 
         QuestionEntity questionEntity = questionDao.getQuestionByUuid(questUuid);
