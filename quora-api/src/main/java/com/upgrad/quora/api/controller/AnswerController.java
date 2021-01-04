@@ -126,9 +126,9 @@ public class AnswerController {
         UserAuthTokenEntity authorizedUser = userAdminBusinessService.getUserByAccessToken(authorization, ActionType.DELETE_ANSWER);
         //Check if the user is himself or an admin trying to delete the answer
         AnswerEntity answer = answerService.isUserAnswerOwner(answerUuId, authorizedUser, ActionType.DELETE_ANSWER);
-        answerService.deleteAnswer(answer,answerUuId,bearerToken[0]);
+        AnswerEntity deletedAnswer = answerService.deleteAnswer(answer,answerUuId,bearerToken[0]);
         AnswerDeleteResponse answerDeleteResponse = new AnswerDeleteResponse()
-                .id(answerUuId)
+                .id(deletedAnswer.getUuid())
                 .status("ANSWER DELETED");
         return new ResponseEntity<AnswerDeleteResponse>(answerDeleteResponse, HttpStatus.OK);
     }
