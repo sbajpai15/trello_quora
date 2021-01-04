@@ -80,7 +80,7 @@ public class UserController {
 
         UserEntity user = userAuthToken.getUser();
 
-        SigninResponse authorizedUserResponse = new SigninResponse().id(user.getUuid());
+        SigninResponse authorizedUserResponse = new SigninResponse().id(user.getUuid()).message("SIGNED IN SUCCESSFULLY");
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("access-token", userAuthToken.getAccessToken());
@@ -99,11 +99,11 @@ public class UserController {
         UserAuthTokenEntity userAuthToken = signoutService.signout(accessToken);
 
         //return uuid of the user
-        SignoutResponse authorizedUserResponse = new SignoutResponse().id(userAuthToken.getUuid());
+        SignoutResponse authorizedUserResponse = new SignoutResponse().id(userAuthToken.getUuid()).message("SIGNED OUT SUCCESSFULLY");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("access-token", userAuthToken.getAccessToken());
-        return new ResponseEntity<SignoutResponse>(authorizedUserResponse, headers, HttpStatus.OK);
+        //HttpHeaders headers = new HttpHeaders();
+        //headers.add("access-token", userAuthToken.getAccessToken());
+        return new ResponseEntity<SignoutResponse>(authorizedUserResponse, HttpStatus.OK);
     }
 
 
