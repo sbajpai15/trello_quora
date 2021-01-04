@@ -1,6 +1,7 @@
 package com.upgrad.quora.service.dao;
 
 import com.upgrad.quora.service.entity.AnswerEntity;
+import com.upgrad.quora.service.entity.QuestionEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -58,22 +59,24 @@ public class AnswerDao {
      * method used for deleting an answer.
      *
      * @param answer answer object to be deleted
+     * @return answer Entity
      */
-    public void  deleteAnswer(AnswerEntity answer) {
+    public AnswerEntity  deleteAnswer(AnswerEntity answer) {
         entityManager.remove(answer);
+        return answer;
     }
 
     /**
      * method used for getting answer for a specific question from database.
      * returns null if no answers are there in the database for the specific question.
      *
-     * @param questionUuId question uuid for whom the answer list is required
+     * @param question to pass id of question Entity for whom the answer list is required
      * @return List of answers
      */
-    public List<AnswerEntity> getAnswersForQuestion(String questionUuId) {
+    public List<AnswerEntity> getAnswersForQuestion(QuestionEntity question) {
         try {
             return entityManager.createNamedQuery("getAnswerForQuestion", AnswerEntity.class)
-                    .setParameter("uuid", questionUuId)
+                    .setParameter("question", question)
                     .getResultList();
         } catch (NoResultException e) {
             return null;

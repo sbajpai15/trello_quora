@@ -136,26 +136,23 @@ public class AnswerService {
      * @throws AnswerNotFoundException      exception thrown if answer is not found
      */
     @Transactional(propagation = Propagation.REQUIRED)
-    public void deleteAnswer(AnswerEntity answer, String answerUuId, final String authToken) throws AuthorizationFailedException, AnswerNotFoundException {
+    public AnswerEntity deleteAnswer(AnswerEntity answer, String answerUuId, final String authToken) throws AuthorizationFailedException, AnswerNotFoundException {
 
         //Checks user signin status based on accessToken provided
         UserAuthTokenEntity userAuthTokenEntity = userDao.getUserAuthToken(authToken);
 
-        if (userAuthTokenEntity != null) {
+        if (userAuthTokenEntity != null && answer != null) {
             if (userAuthTokenEntity.getLogoutAt() != null) {
                 throw new AuthorizationFailedException("ATHR-002", "User is signed out.Sign in first to post an answer");
             }
 
             //Returns question based on questionId if exists
-            answer = answerDao.getAnswerForUuId(answerUuId);
+            AnswerEntity answerEntity = answerDao.getAnswerForUuId(answerUuId);
 
-            if (answer != null) {
+            if (answerEntity != null) {
                 //Creates Answer based on input
-                UserEntity userEntity = userDao.getUserByUserid(userAuthTokenEntity.getUuid());
-                if (userEntity.getRole().equalsIgnoreCase("admin") || (answer.getUser().getUserName() == userEntity.getUserName())) {
-                    System.out.println("Hello Shrish1");
-                    answerDao.deleteAnswer(answer);
-                    System.out.println("Hello Shrish2");
+                if (userAuthTokenEntity.getUser().getRole().equalsIgnoreCase("admin") || (answer.getUser().getUuid() == userAuthTokenEntity.getUser().getUuid())) {
+                    return answerDao.deleteAnswer(answerEntity);
                 } else {
                     throw new AnswerNotFoundException("ANS-001", "Entered answer uuid does not exist");
                 }
@@ -194,7 +191,7 @@ public class AnswerService {
             }
 
             //get the list of Answers for question
-            List<AnswerEntity> answerList = answerDao.getAnswersForQuestion(questionUuId);
+            List<AnswerEntity> answerList = answerDao.getAnswersForQuestion(question);
             if (answerList == null) {
                 throw new AnswerNotFoundException("OTHR-001", "No Answers available for the given question uuid");
             } else {
